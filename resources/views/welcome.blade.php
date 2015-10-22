@@ -24,8 +24,8 @@
                 },
                 
                 ready: function () {
-                    socket.on('test-channel:UserSignedUp', function (data) {
-                        this.users.push(data.user_name);
+                    socket.on('test-channel:App\\Events\\UserSignedUp', function (data) {
+                        this.users.push(data.userName);
                     }.bind(this));
                 }
             });

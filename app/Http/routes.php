@@ -1,7 +1,5 @@
 <?php
 
-use \Redis;
-
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -13,17 +11,10 @@ use \Redis;
 |
 */
 
+use App\Events\UserSignedUp;
+
 Route::get('/', function () {
-
-    $data = [
-        'event' => 'UserSignedUp',
-        'data' => [
-            'user_name' => 'Nik Doe'
-        ]
-    ];
-
-    Redis::publish('test-channel', json_encode($data));
-
+    event(new UserSignedUp(Request::get('name')));
 
     return view('welcome');
 });
